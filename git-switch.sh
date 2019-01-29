@@ -13,7 +13,8 @@ git checkout $1
 # search git stash list for the matching branch name (and it has to be *exact*)
 # get the number index for that stash
 
-n=`git stash list --max-count=1 --grep=<stash_name> | cut -f1 -d":"`
+grep="^On $1: $1$"
+n=`git stash list --max-count=1 --grep=$grep | cut -f1 -d":"`
 if [[ -n "$n" ]]
 then
     git stash apply stash@{$n}
