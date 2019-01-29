@@ -1,6 +1,8 @@
 # git-switch
 git extension to manage uncommitted changes when switching branches
 
+requires git version >=2.13.0
+
 ## Why
 If you have multiple branches in one repo, you might sometimes find yourself
 switching between branches in the middle of some work. The work isn't complete
