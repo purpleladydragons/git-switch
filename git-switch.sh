@@ -15,7 +15,7 @@ git checkout $1
 
 grep="^On $1: $1$"
 stash_n=`git stash list --max-count=1 --grep="$grep" | cut -f1 -d":"`
-if [[ -n "$n" ]]
+if [[ -n "$stash_n" ]]
 then
     git stash apply $stash_n
     git stash drop $stash_n
