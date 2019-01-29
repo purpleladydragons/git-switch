@@ -14,11 +14,11 @@ git checkout $1
 # get the number index for that stash
 
 grep="^On $1: $1$"
-n=`git stash list --max-count=1 --grep="$grep" | cut -f1 -d":"`
+stash_n=`git stash list --max-count=1 --grep="$grep" | cut -f1 -d":"`
 if [[ -n "$n" ]]
 then
-    git stash apply stash@{$n}
-    git stash drop stash@{$n}
+    git stash apply $stash_n
+    git stash drop $stash_n
 else
     echo "Error: No stash matches"
 fi
