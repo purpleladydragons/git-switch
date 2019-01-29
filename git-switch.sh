@@ -9,5 +9,16 @@ fi
 current_branch=`git branch | grep \* | cut -d ' ' -f2`
 git stash push -m $current_branch
 git checkout $1
-git stash apply stash^{/$1}
-git stash drop stash^{/$1}
+
+# search git stash list for the matching branch name (and it has to be *exact*)
+# get the number index for that stash
+
+n=`git stash list --max-count=1 --grep=<stash_name> | cut -f1 -d":"`
+if [[ -n "$n" ]]
+then
+    git stash apply stash@{$n}
+    git stash drop stash@{$n}
+else
+    echo "Error: No stash matches"
+    return 1
+fi
